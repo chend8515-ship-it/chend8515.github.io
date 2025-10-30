@@ -1,0 +1,117 @@
+<!DOCTYPE html> <html lang="zh-Hant"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>稻寶地．幸福農｜自然農法・減碳友善・幸福農米</title> <meta name="description" content="一碗飯的承諾：養護一畝田，陪伴土地與人。自然農法｜不藥不化肥｜綠肥輪作｜人工割草｜種碳永續米。"> <meta name="theme-color" content="#507C3A"> <link href="https://fonts.googleapis.com/css2?family=Gurajada&family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet"> <style> /* 內嵌 CSS 開始：單檔可直接打開 */
+    :root{ /* 定義全站共用色票變數 */
+      --green:#507C3A; /* 主綠色（你指定） */
+      --beige:#F4EED8; /* 米色（你指定） */
+      --text:#1B2A1D;  /* 主要文字色 */
+    } /* :root 結束 */
+
+    *{box-sizing:border-box;margin:0;padding:0;} /* 統一盒模型並清空預設邊距 */
+    html,body{height:100%;width:100%;font-family:'Noto Sans TC','Microsoft JhengHei',system-ui,sans-serif;color:var(--text);} /* 全頁撐滿並設定字體與顏色 */
+    body{background:linear-gradient(180deg,#8EC5FF 0%, var(--beige) 100%);} /* 保底漸層（避免載圖前的空白） */
+
+    /* ===== 導覽列（固定頂端，右側兩顆 CTA） ===== */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:rgba(255,255,255,.78);backdrop-filter:saturate(160%) blur(10px);} /* 半透明毛玻璃，提升可讀 */
+    .brandMini{display:flex;flex-direction:column;line-height:1;} /* 左側品牌小列（避免與主標重疊） */
+    .brandMini b{color:var(--green);} /* 品牌名用主綠色 */
+    .brandMini span{font-size:12px;color:#58635b;} /* 副標小字 */
+    .navCtas{display:flex;gap:10px;} /* 右側按鈕間距 */
+    .btn{border:0;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:800;letter-spacing:.3px;transition:transform .12s ease,box-shadow .2s ease;} /* 按鈕通用樣式 */
+    .btn:active{transform:translateY(1px);} /* 點擊微移動 */
+    .btnPrimary{background:var(--green);color:#fff;box-shadow:0 4px 12px rgba(80,124,58,.25);} /* 主色按鈕：我要養護 */
+    .btnGhost{background:#fff;color:var(--green);border:1px solid var(--green);} /* 次色按鈕：立即購買 */
+    .btnGhost.hide-on-mobile{display: block;} /* 預設顯示，手機版會隱藏 */
+
+    /* ===== 主舞台：調整底圖，使用 cover 模式來填滿整個螢幕 (使用 CSS Background) ===== */
+    .stage{position:relative;height:100vh;width:100vw;overflow:hidden;} /* 佔滿一個螢幕高度 */
+    .bg{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      background-image: url('images/hero.jpg'); /* 設定圖片路徑 */
+      background-size: cover; /* 關鍵：確保圖片填滿整個容器 */
+      background-position: center bottom; /* 圖片置中，但稍微偏底，以保持稻穗主體 */
+      background-repeat: no-repeat;
+    } 
+
+    /* ===== 右上角：品牌卡（大圖中的「稻寶地．幸福農」移到右上）＋ 小 QR ===== */
+    .qr{position:absolute;top:86px;right:16px;z-index:6;background:#fff;border-radius:10px;padding:6px;box-shadow:0 6px 14px rgba(0,0,0,.18);} /* 小 QR 卡片（不遮住導覽列） */
+    .qr img{width:86px;height:auto;display:block;} /* 小 QR 尺寸 */
+    .brandCard{position:absolute;top:86px;right:120px;z-index:6;background:rgba(255,255,255,.9);border-radius:12px;padding:10px 14px;box-shadow:0 6px 18px rgba(0,0,0,.12);} /* 品牌膠囊卡，放在小 QR 左側 */
+    .brandCard .t{font-weight:900;color:var(--green);font-size:20px;letter-spacing:.6px;} /* 品牌主名 */
+    .brandCard .s{font-size:12px;color:#35513A;margin-top:4px;opacity:.95;} /* 品牌副標 */
+
+    /* ===== 左側主訊息（大標＋關鍵詞＋說明＋小膠囊） ===== */
+    .headline{position:absolute;left:6vw;top:22vh;z-index:5;max-width:min(880px,88vw);} /* 主標區塊位置與寬度 */
+    .headline h1{font-family:'Gurajada','Noto Sans TC',serif;font-size:clamp(36px,6.4vw,72px);line-height:1.12;color:#234232;text-shadow:0 2px 6px rgba(0,0,0,.12);} /* 手寫感主標，貼近你粉專的溫暖路線 */
+    .headline .kws{margin-top:12px;font-size:16px;color:#2f4e38;letter-spacing:.5px;} /* 自然工法五關鍵詞列 */
+    .headline .desc{margin-top:10px;background:rgba(255,255,255,.68);color:#2f4e38;font-size:15px;line-height:1.8;max-width:820px;padding:10px 12px;border-radius:10px;} /* 半透明說明段，提升可讀性 */
+    .chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;} /* 小膠囊容器 */
+    .chip{background:var(--beige);border:1px solid rgba(0,0,0,.08);border-radius:999px;padding:8px 12px;font-weight:700;color:#2d3f31;font-size:14px;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.08);} /* 單顆小膠囊 */
+
+    /* ===== 四步驟流程（降低參與門檻） ===== */
+    .flow{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px;} /* 四步驟列 */
+    .step{background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:10px 14px;font-weight:800;font-size:15px;color:#2e4a34;box-shadow:0 4px 12px rgba(0,0,0,.12);} /* 單一步驟膠囊 */
+
+    /* ===== 中央 CTA 白板 (置中偏下) ===== */
+    .ctaPanel{
+      position:absolute;
+      left:50%; /* 水平置中 */
+      bottom:8vh; /* 調整底部距離，略微上移 */
+      z-index:5;
+      background:rgba(255,255,255,.9);
+      border-radius:18px;
+      padding:18px 20px;
+      max-width:min(520px,86vw);
+      box-shadow:0 12px 26px rgba(0,0,0,.16);
+      transform: translateX(-50%); /* 抵銷 50% 寬度，完成水平置中 */
+    } 
+    .ctaTitle{font-weight:900;color:#2c5a3a;font-size:clamp(22px,3.6vw,36px);margin-bottom:8px;} /* 白板標題（呼應流程） */
+    .ctaBtns{display:flex;gap:12px;flex-wrap:wrap;} /* 兩顆 CTA 容器 */
+
+    /* ===== 右下標語長條（品牌標語） ===== */
+    .slogan{position:absolute;right:4vw;bottom:6vh;z-index:5;background:rgba(255,255,255,.9);border-radius:12px;padding:10px 14px;font-weight:800;color:#2f4e38;box-shadow:0 8px 18px rgba(0,0,0,.12);} /* 標語條：每個人心中都有一畝田 */
+
+    /* ===== RWD：手機／平板細節調整 (優化) ===== */
+    @media (max-width:768px){ /* 針對寬度 768px 以下的裝置 */
+      
+      /* --- 導覽列優化 --- */
+      .nav{padding:10px 14px;} /* 導覽列縮窄 */
+      .btn{padding:9px 14px;border-radius:9px;} /* 按鈕縮小 */
+      .btnGhost.hide-on-mobile{display: none;} /* 隱藏導覽列中的次要按鈕 */
+      
+      /* --- 側邊元素隱藏/調整 --- */
+      .brandCard{display: none;} /* 手機上隱藏品牌卡，避免擁擠 */
+      .slogan{display: none;} /* 手機上隱藏右下標語，避免擁擠 */
+      
+      .qr{top:72px;right:10px;} /* 小 QR 靠角落，在導覽列下方 */
+      .qr img{width:70px;} /* 小 QR 再縮一級 */
+      
+      /* --- 主標題區塊優化 --- */
+      .headline{left:5vw;top:10vh;max-width:90vw;} /* 主標區塊大幅向上移 */
+      .headline h1{font-size:32px;} /* 主標縮小 */
+      .headline .kws{font-size:13px; margin-top: 8px;} /* 關鍵詞縮小 */
+      .headline .desc{
+        font-size:13px; 
+        padding: 8px 10px;
+        background:rgba(255,255,255,.85); /* 提高透明度，改善可讀性 */
+      } /* 說明縮小 */
+      .chips{margin-top:8px;}
+      .chip{font-size:12px;padding:7px 10px;} /* 膠囊縮小 */
+      .step{font-size:13px;padding:8px 12px;} /* 步驟縮小 */
+      
+      /* --- CTA 白板優化 --- */
+      .ctaPanel{
+        left: 50%; /* 水平置中 */
+        transform: translateX(-50%); /* 抵銷 50% 寬度 */
+        bottom: 4vh; /* 調整底部距離，避免太貼邊 */
+        right: auto; /* 清除舊的右側對齊 */
+        padding:14px 16px;
+        border-radius:14px;
+        max-width: 80vw; /* 限制寬度，避免佔滿整個螢幕 */
+      }
+      .ctaTitle{font-size:20px;} /* 白板標題縮小 */
+      .ctaBtns{gap: 8px; flex-direction: column;} /* 按鈕改成垂直排列，更適合單手點擊 */
+      .ctaBtns .btn{width: 100%;} /* 讓按鈕佔滿容器寬度 */
+      
+    } /* RWD 手機段落結束 */
+  </style> </head> <body> <nav class="nav"> <div class="brandMini"> <b>稻寶地．幸福農</b> <span>自然農法・減碳友善・幸福農米</span> </div> <div class="navCtas"> <a class="btn btnGhost hide-on-mobile"  href="https://forms.gle/pUS1wjZe4LVVMVeq8" target="_blank" rel="noopener">立即購買</a> <a class="btn btnPrimary" href="https://forms.gle/pUS1wjZe4LVVMVeq8" target="_blank" rel="noopener">我要養護</a>    </div> </nav> <main class="stage" aria-label="首頁主視覺"> <div class="bg"> </div> <div class="qr"> <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=https%3A%2F%2Fforms.gle%2FpUS1wjZe4LVVMVeq8" alt="養護行動與購買表單 QR"> </div> <div class="brandCard"> <div class="t">稻寶地．幸福農</div> <div class="s">自然農法・減碳友善 幸福農米</div> </div> <section class="headline"> <h1>一碗飯的承諾：養護一畝田，陪伴土地與人</h1> <div class="kws">自然農法｜不藥不化肥｜綠肥輪作｜人工割草｜種碳永續米</div> <p class="desc">加入「養護」行動，支持花蓮在地小農；購買每一包米，都在守護土壤、氣候與社區。以自然工法建立韌性田地，讓每一碗飯都成為長期的陪伴。</p> <div class="chips"> <span class="chip">自然農法</span> <span class="chip">不藥不化肥</span> <span class="chip">綠肥輪作</span> <span class="chip">人工割草</span> <span class="chip">種碳永續米</span> </div> <div class="flow"> <span class="step">登記養護</span> <span class="step">匯款建檔</span> <span class="step">田間回報</span> <span class="step">出貨／捐贈</span> </div> </section> <aside class="ctaPanel"> <div class="ctaTitle">我要養護｜立即購買</div> <div class="ctaBtns"> <a class="btn btnPrimary" href="https://forms.gle/pUS1wjZe4LVVMVeq8" target="_blank" rel="noopener">我要養護</a> <a class="btn btnGhost"    href="https://forms.gle/pUS1wjZe4LVVMVeq8" target="_blank" rel="noopener">立即購買</a> </div> </aside> <div class="slogan">每個人心中都有一畝田｜稻寶地・幸福農</div> </main> </body> </html> 
